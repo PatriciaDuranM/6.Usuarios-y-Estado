@@ -1,14 +1,14 @@
-import Button from './components/button/Button';
+import Header from './components/Header/Header';
+import PrintCards from './components/PrintCards/PrintCards';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 const App = () => {
 	return (
-		<div>
+		<>
 			<GlobalStyles />
-			<h1>Curso de React</h1>
-			<Button color='steelblue'>Click Me!</Button>
-			<Button color='#f0f'>Click Me!</Button>
-		</div>
+			<Header />
+			<PrintCards />
+		</>
 	);
 };
 
