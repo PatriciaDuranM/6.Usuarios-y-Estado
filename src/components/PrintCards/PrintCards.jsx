@@ -1,11 +1,10 @@
-import { USERS } from '../../constants/users';
 import Card from '../Card/Card';
 import StyledCardsBox from './PrintCards.styles';
 
-const PrintCards = () => {
+const PrintCards = ({ users }) => {
 	return (
 		<StyledCardsBox>
-			{USERS.map(user => (
+			{users.map(user => (
 				<Card key={user.userId} {...user} />
 			))}
 		</StyledCardsBox>

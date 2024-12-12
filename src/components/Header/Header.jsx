@@ -5,19 +5,25 @@ import {
 	StyledTitle
 } from './Header.styles';
 
-const Header = () => {
+const Header = ({ setSearch, setCheck, setOrder }) => {
 	return (
 		<StyledHeader>
 			<StyledTitle>Listado de usuarios</StyledTitle>
 			<StyledForm>
-				<input type='text'></input>
+				<input
+					type='text'
+					onInput={event => setSearch(event.target.value)}
+				></input>
 				<StyledCheckboxBox>
 					<label>Sólo activos</label>
-					<input type='checkbox'></input>
+					<input
+						type='checkbox'
+						onChange={event => setCheck(event.target.checked)}
+					></input>
 				</StyledCheckboxBox>
-				<select>
-					<option>Por defecto</option>
-					<option>Por nombre</option>
+				<select onChange={event => setOrder(event.target.value)}>
+					<option value='default'>Por defecto</option>
+					<option value='name'>Por nombre</option>
 				</select>
 			</StyledForm>
 		</StyledHeader>
