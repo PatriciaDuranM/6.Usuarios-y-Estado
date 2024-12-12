@@ -26,7 +26,9 @@ export const GlobalStyles = createGlobalStyle`
 
     body{
         font-family:sans-serif;
-        margin-inline:auto;
+        padding: 64px;
+        padding-left: 128px;
+        
     }
 
 `;
