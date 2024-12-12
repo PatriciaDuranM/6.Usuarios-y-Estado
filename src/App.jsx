@@ -10,24 +10,9 @@ const App = () => {
 	const [order, setOrder] = useState('default');
 	console.log(search, order, check);
 
-	const searchFilter = () => {
-		const filteredUsers = USERS.filter(user =>
-			user.name.toLowerCase().includes(search.toLowerCase())
-		);
-		return filteredUsers;
-	};
-
-	const activeCheck = () => {
-		const defaultUsers = USERS.filter(user => user);
-		const activeUsers = USERS.filter(user => user.active === true);
-		const inactiveUsers = USERS.filter(user => user.active === false);
-
-		if (check === true) {
-			return activeUsers;
-		} else {
-			return inactiveUsers;
-		}
-	};
+	let filteredUsers = searchFilter(search, USERS);
+	filteredUsers = activeCheck(check, filteredUsers);
+	filteredUsers = selectFilter(order, filteredUsers);
 
 	return (
 		<>
@@ -40,9 +25,36 @@ const App = () => {
 				order={order}
 				setOrder={setOrder}
 			/>
-			<PrintCards users={(searchFilter(), activeCheck())} />
+			<PrintCards users={filteredUsers} />
 		</>
 	);
 };
 
 export default App;
+
+const searchFilter = (search, users) => {
+	const filteredUsers = users.filter(user =>
+		user.name.toLowerCase().includes(search.toLowerCase())
+	);
+	return filteredUsers;
+};
+
+const activeCheck = (check, users) => {
+	const activeUsers = users.filter(user => user.active === true);
+
+	if (check === true) {
+		return activeUsers;
+	} else {
+		return users;
+	}
+};
+
+const selectFilter = (order, users) => {
+	const newUSERS = [...users];
+	if (order === 'name') {
+		return newUSERS.sort((a, b) => a.name.localeCompare(b.name));
+	}
+	if (order === 'default') {
+		return newUSERS;
+	}
+};
